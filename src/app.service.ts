@@ -15,13 +15,12 @@ export class AppService {
     });
   }
 
-  async getVersionCodeFromAppStore(trackId: number): Promise<string> {
+  async getVersionCodeFromAppStore(trackId: string): Promise<string> {
     const res = await this._httpService.get(getUri(trackId)).toPromise();
     const $ = cheerio.load(res.data);
     const version = $('p.whats-new__latest__version')
       .html()
       .replace(/[^.0-9]+/g, '');
-
     return JSON.stringify({
       version,
     });

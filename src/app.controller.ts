@@ -15,8 +15,7 @@ export class AppController {
 
   @Get('version_ios')
   async getVersionCodeApple(@Req() request: Request): Promise<string> {
-    console.log('test method ios', request.query);
-    const trackId: number = +request.query.trackId;
+    const trackId: any = request.query.trackId;
     return await this.appService.getVersionCodeFromAppStore(trackId);
   }
 }
